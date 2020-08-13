@@ -1,6 +1,7 @@
-import { Eventing, Callback } from './Eventing';
+import { Eventing } from './Eventing';
 import { Sync } from './Sync';
 import { Attributes } from './Attributes';
+import { AxiosResponse } from 'axios';
 
 export interface UserProps {
   id?: number;
@@ -19,18 +20,42 @@ export class User {
     this.attributes = new Attributes<UserProps>(attrs);
   }
 
-  get<K extends keyof UserProps>(propName: K): UserProps[K] {
-    return this.attributes.get(propName);
+  get get() {
+    return this.attributes.get;
   }
-  set(value: UserProps): void {
-    this.attributes.set(value);
+
+  get on() {
+    return this.events.on;
   }
-  on(eventName: string, callback: Callback): void {
-    this.events.on(eventName, callback);
+
+  get trigger() {
+    return this.events.trigger;
   }
-  trigger(eventName: string): void {
-    this.events.trigger(eventName);
+
+  set(update: UserProps): void {
+    this.attributes.set(update);
+    this.events.trigger('change');
   }
-  fetch() {}
-  save() {}
+
+  fetch(): void {
+    const id = this.attributes.get('id');
+    if (typeof id !== 'number') {
+      throw new Error('Cannot fetch without an id');
+    }
+    this.sync.fetch(id).then((response: AxiosResponse): void => {
+      this.set(response.data);
+    });
+  }
+
+  save(): void {
+    const userData = this.attributes.getAll();
+    this.sync
+      .save(userData)
+      .then((response: AxiosResponse) => {
+        this.trigger('save');
+      })
+      .catch(() => {
+        this.trigger('error');
+      });
+  }
 }
