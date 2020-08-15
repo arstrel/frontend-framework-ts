@@ -1,6 +1,8 @@
 import { Eventing } from './Eventing';
 import axios, { AxiosResponse } from 'axios';
 
+// T - type of an item in a collection
+// K - type of json that comes form API
 export class Collection<T, K> {
   models: T[] = [];
   events: Eventing = new Eventing();
