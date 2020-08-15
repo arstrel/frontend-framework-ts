@@ -1,5 +1,6 @@
 # frontend-framework-ts
 
+Practise project inspired by old-school Marionette.js (for Views) and Backbone.js (for Model)
 Frontend framework with TypeScript
 
 Consist of two parts:
@@ -44,3 +45,7 @@ Consist of two parts:
 
 2. Refactor User to use composition
 3. Refactor User to be a reusable class that can represent any piece of data, not just a User
+4. Create Collections class that can handle collection of things
+5. Views
+6. Handling DOM events
+7. Nesting DOM items

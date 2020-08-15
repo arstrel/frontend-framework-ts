@@ -16,16 +16,6 @@
       "id": 5
     },
     {
-      "name": "Tims",
-      "age": 12,
-      "id": 6
-    },
-    {
-      "name": "Tims",
-      "age": 12,
-      "id": 7
-    },
-    {
       "name": "Tim",
       "age": 25,
       "id": 8
@@ -39,6 +29,26 @@
       "name": "Gleb",
       "age": 52,
       "id": 10
+    },
+    {
+      "name": "Bilbo",
+      "age": 48,
+      "id": 13
+    },
+    {
+      "name": "Angel",
+      "age": 19,
+      "id": 14
+    },
+    {
+      "name": "Maria",
+      "age": 19,
+      "id": 15
+    },
+    {
+      "name": "Jill",
+      "age": 56,
+      "id": 16
     }
   ]
 }

@@ -23,8 +23,7 @@ export class Collection<T, K> {
         const itemFromDB = this.deserealize(val);
         this.models.push(itemFromDB);
       });
+      this.trigger('change');
     });
-
-    this.trigger('change');
   }
 }
